@@ -1,8 +1,12 @@
 # Jubobs's Git aliases
 
 A collection of UNIX shell scripts for defining useful Git aliases,
-with an emphasis on portability and stability
-(plumbing rather than porcelain commands are used wherever possible).
+with an emphasis on
+
+- portability (all scripts are tested in `dash`)
+- stability (Git plumbing commands are used wherever possible)
+
+## Aliases
 
 - `git isnewest`: is the current branch the most recent one?
 
