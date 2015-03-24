@@ -1,0 +1,33 @@
+#!/bin/sh
+
+# git-greenbranch
+#
+# List the local branches that contain commits newer than a specific date
+#
+# Usage: git greenbranch <date>
+#
+# To make a Git alias called 'greenbranch' out of this script,
+# put the latter on your search path, make it executable, and run
+#
+#   git config --global alias.greenbranch '! git-greenbranch'
+
+if [ $# -ne 1 ]; then
+    printf "usage: git greenbranch <date>\n\n"
+    printf "For more details on the allowed formats for <date>, see the\n"
+    printf "'git-log' man page.\n"
+    exit 1
+fi
+
+fmt='
+    ref=%(refname:short)
+
+    if [ -n "$(git rev-list --max-count=1 --since="$1" $ref)" ]; then
+        printf "%s\n" "$ref"
+    fi
+'
+
+eval=$(git for-each-ref --shell --format="$fmt" refs/heads/)
+
+eval "$eval"
+
+exit $?

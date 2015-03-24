@@ -8,6 +8,9 @@ with an emphasis on
 
 ## Aliases
 
+- `git greenbranch`: list local branches that contain commits newer than
+ a specific date
+
 - `git isnewest`: is the current branch the most recent one?
 
 - `git newest-branch`: show the short name of the most recent branch
