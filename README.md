@@ -21,3 +21,7 @@ with an emphasis on
 
 - `git status-dot`: show the status of non-repository files in the working
  directory
+
+## License
+
+All the scripts are released under the terms of the MIT license.
