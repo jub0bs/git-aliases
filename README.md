@@ -3,15 +3,19 @@
 A collection of UNIX shell scripts for defining useful Git aliases,
 with an emphasis on
 
-- portability (all scripts are tested in `dash`)
-- stability (Git plumbing commands are used wherever possible)
+- efficiency
+- portability:  all scripts are tested in `dash`
+- stability:    Git plumbing commands are used wherever possible
 
 ## Aliases
 
 - `git greenbranch`: list local branches that contain commits newer than
- a specific date
+ a specified date
 
 - `git isnewest`: is the current branch the most recent one?
+
+- `git ndiff`: show the changes between the n-th revision that changed a
+ specified path
 
 - `git newest-branch`: show the short name of the most recent branch
 
