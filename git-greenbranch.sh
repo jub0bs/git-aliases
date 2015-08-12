@@ -1,15 +1,15 @@
 #!/bin/sh
 
-# git-greenbranch
+# git-greenbranch.sh
 #
 # List the local branches that contain commits newer than a specific date
 #
 # Usage: git greenbranch <date>
 #
 # To make a Git alias called 'greenbranch' out of this script,
-# put the latter on your search path, make it executable, and run
+# put the latter on your search path, and run
 #
-#   git config --global alias.greenbranch '! git-greenbranch'
+#   git config --global alias.greenbranch '!sh git-greenbranch.sh'
 
 if [ $# -ne 1 ]
 then
@@ -19,17 +19,14 @@ then
     exit 1
 fi
 
-fmt='
-    ref=%(refname:short)
+testdate=$1
 
-    if [ -n "$(git rev-list --max-count=1 --since="$1" $ref)" ]
-    then
-        printf "%s\n" "$ref"
-    fi
-'
-
-eval=$(git for-each-ref --shell --format="$fmt" refs/heads/)
-
-eval "$eval"
+git for-each-ref --format='%(refname:short)' refs/heads/ \
+    | while read ref; do
+          if [ -n "$(git rev-list --max-count=1 --since="$testdate" $ref)" ]
+          then
+              printf "%s\n" "$ref"
+          fi
+      done
 
 exit $?
