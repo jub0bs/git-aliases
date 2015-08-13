@@ -9,18 +9,21 @@ with an emphasis on
 
 ## Aliases
 
+- `git branchesthatcontain` : list the local branches that contain a specific
+  revision
+
 - `git greenbranch`: list local branches that contain commits newer than
- a specified date
+  a specified date
 
 - `git isnewest`: is the current branch the most recent one?
 
 - `git ndiff`: show the changes between the n-th revision that changed a
- specified path
+  specified path
 
 - `git newest-branch`: show the short name of the most recent branch
 
 - `git status-dot`: show the status of non-repository files in the working
- directory
+  directory
 
 ## License
 
