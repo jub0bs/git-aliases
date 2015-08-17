@@ -13,17 +13,17 @@
 #       '!sh git-branchesthatcontain.sh'
 
 if [ $# -ne 1 ]; then
-    printf "usage: git branchesthatcontain <rev>\n\n"
-    exit 1
+  printf "usage: git branchesthatcontain <rev>\n\n"
+  exit 1
 fi
 
 rev=$1
 
-git for-each-ref --format='%(refname:short)' refs/heads \
-    | while read ref; do
-          if git merge-base --is-ancestor "$rev" "$ref"; then
-              echo "$ref"
-          fi;
-      done
+git for-each-ref --format='%(refname:short)' refs/heads | \
+  while read ref; do
+    if git merge-base --is-ancestor "$rev" "$ref"; then
+      printf "$ref\n"
+    fi;
+  done
 
 exit $?

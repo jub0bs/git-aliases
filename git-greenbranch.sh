@@ -11,22 +11,20 @@
 #
 #   git config --global alias.greenbranch '!sh git-greenbranch.sh'
 
-if [ $# -ne 1 ]
-then
-    printf "usage: git greenbranch <date>\n\n"
-    printf "For more details on the allowed formats for <date>, see the\n"
-    printf "'git-log' man page.\n"
-    exit 1
+if [ $# -ne 1 ]; then
+  printf "usage: git greenbranch <date>\n\n"
+  printf "For more details on the allowed formats for <date>, see the\n"
+  printf "'git-log' man page.\n"
+  exit 1
 fi
 
-testdate=$1
+testdate="$1"
 
-git for-each-ref --format='%(refname:short)' refs/heads/ \
-    | while read ref; do
-          if [ -n "$(git rev-list --max-count=1 --since="$testdate" $ref)" ]
-          then
-              printf "%s\n" "$ref"
-          fi
-      done
+git for-each-ref --format='%(refname:short)' refs/heads/ | \
+  while read ref; do
+    if [ -n "$(git rev-list --max-count=1 --since="$testdate" $ref)" ]; then
+      printf "%s\n" "$ref"
+    fi
+  done
 
 exit $?
